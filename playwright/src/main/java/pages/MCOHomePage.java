@@ -12,18 +12,22 @@ public class MCOHomePage extends CommonMethods {
 	private Locator financeModuleLink;
 	private Locator cms1500;
 	private Locator ub04;
+	private Locator CheckSelectProcess;
 	
 	
 	MCOHomePage(Page page) {
 		this.page = page;
 		this.loading = this.page.getByText("Loading").first();
-		this.financeModuleLink = this.page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("󰁰 Finance 󰅀"));
+		this.financeModuleLink = this.page.locator("//span[text()='Finance']");
 		this.cms1500 = this.page.getByText("CMS");
 		this.ub04 = this.page.getByText("UB-");
+		this.CheckSelectProcess= this.page.locator("//a[text()=' Check Select Process']");
 	}
 	
 	
 	private void clickFinanceModuleLink() {
+		if(loading.isVisible())
+			page.waitForTimeout(5000);
 		click(financeModuleLink, "Finance Module");
 	}
 	
@@ -44,4 +48,13 @@ public class MCOHomePage extends CommonMethods {
 		click(ub04, "UB04 Module");
 	}
 	
+	public void navigateToCheckSelectProcess()
+	{
+		if(loading.isVisible())
+			page.waitForTimeout(5000);
+		if(!cms1500.isVisible()) {
+			clickFinanceModuleLink();
+			}
+		click(CheckSelectProcess, "CheckSelectProcess");
+	}
 }

@@ -10,6 +10,7 @@ public class PageObjectManager {
 	private MCOHomePage mcoHomePage;
 	private MCOCMS1500Page mcocms1500page;
 	private MCOUB04Page mcoub04Page;
+	private MCOBatchSelectPage batchPage;
 	
 	public PageObjectManager(Page page) {
 		
@@ -36,7 +37,10 @@ public class PageObjectManager {
 		return (mcoub04Page == null) ? mcoub04Page = new MCOUB04Page(page) : mcoub04Page;
 	}
 	
-	
+	public MCOBatchSelectPage MCOBatchSelectPage()
+	{
+		return(batchPage == null) ? batchPage = new MCOBatchSelectPage(page) : batchPage;
+	}
 	
 	
 }

@@ -253,7 +253,7 @@ public class MCOUB04Page extends CommonMethods {
 		this.billType=this.page.locator("//input[@formcontrolname='Bill_type_04']");
 		this.statementFromDate= this.page.locator("//input[@formcontrolname='Stmt_prd_frm_06']");
 		this.statementToDate= this.page.locator("//input[@formcontrolname='Stmt_prd_to_06']");
-		this.memberSearch= this.page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("󰍉 Search"));
+		this.memberSearch= this.page.locator("//span[text()='Search ']");
 		this.patientId= this.page.getByLabel("Patient ID");
 		this.memberSearchButton=this.page.locator("//span[text()='Search']");
 		this.selectSearchMember= this.page.getByRole(AriaRole.GRIDCELL, new Page.GetByRoleOptions().setName("10982"));
@@ -533,6 +533,8 @@ public class MCOUB04Page extends CommonMethods {
 			if(loading.isVisible())
 				page.waitForTimeout(3000);
 			enterData(statementToDate,StatementToDate,"statementToDate"); 
+			if(loading.isVisible())
+				page.waitForTimeout(11000);
 			click(memberSearch,"memberSearch");
 			if(loading.isVisible())
 				page.waitForTimeout(3000);
